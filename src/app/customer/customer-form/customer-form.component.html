@@ -1,0 +1,36 @@
+<p>customer-form works!</p>
+
+<p>
+  {{ customerForm.value | json }}
+</p>
+
+<!-- <button type="button" (click)="findCustomer('123456')">FIND CUSTOMER</button> -->
+
+<button (click)="submitForm()">SUBMIT FORM</button>
+
+<form class="customerForm" [formGroup]="customerForm">
+
+  <label for="id">Customer ID
+    <input id="custId" type="text" formControlName="custId">
+  </label>
+
+  <!-- <label for="firstName">First Name
+    <input id="firstName" type="text" formControlName="firstName">
+  </label>
+
+  <label for="lastName">Last Name
+    <input id="lastName" type="text" formControlName="lastName">
+  </label>
+
+  <label for="phonePrimary">Phone 1
+    <input id="phonePrimary" type="text" formControlName="phonePrimary">
+  </label>
+
+  <label for="phoneSecondary">Phone 2
+    <input id="phoneSecondary" type="text" formControlName="phoneSecondary">
+  </label>
+
+  <label for="email">Email Address
+    <input id="email" type="text" formControlName="email">
+  </label> -->
+</form>

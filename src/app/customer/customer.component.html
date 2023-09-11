@@ -1,0 +1,9 @@
+<p>customer works!</p>
+
+{{
+  customer | json
+}}
+
+<button>GET CUSTOMER</button>
+
+<app-customer-form (customer$)="getCustomer($event)"></app-customer-form>
