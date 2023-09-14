@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { CustomerService } from '../services/customer.service';
+import { FormGroup } from '@angular/forms';
+
+import { Customer } from 'src/constants/customer-model';
 
 @Component({
   selector: 'app-customer',
@@ -20,5 +23,11 @@ export class CustomerComponent {
       complete: () => console.log(`Found Customer ${id}!`)
     });
   }
-  
+
+  createCustomer(values: FormGroup): void {
+    console.log('VALUES: ', values);
+    const customer: Customer = {...values.value};
+    this.customerService.createCustomer(customer).subscribe(console.log);
+  }
+
 }
