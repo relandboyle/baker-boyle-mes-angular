@@ -9,13 +9,8 @@ import { User } from 'src/constants/user-model';
   providedIn: 'root'
 })
 export class CustomerService {
-  customerUrl = 'http://localhost:8089/customers';
+  customerUrl = 'http://localhost:8089/api/v1/customers';
   reqHeaders: Headers;
-  staticTestUser: User = {
-    userId: '1234567890',
-    firstName: 'Mark',
-    lastName: 'Zuckerberg'
-  }
 
   constructor(
     private http: HttpClient
@@ -26,34 +21,42 @@ export class CustomerService {
   }
 
   getCustomer(custId: string): Observable<HttpResponse<Customer>> {
+    this.reqHeaders.set("X-Custom-Header", "GET CUSTOMER");
     const httpHeaders = new HttpHeaders(this.reqHeaders);
-    return this.http.get<Customer>(this.customerUrl, {
+
+    return this.http.get<Customer>(`${this.customerUrl}/${custId}`, {
       headers: httpHeaders,
       observe: 'response'
     });
   }
 
   createCustomer(customer: Customer): Observable<HttpResponse<Customer>> {
-    this.reqHeaders.set("X-Custom-Test", "Testing APPEND method!")
+    this.reqHeaders.set("X-Custom-Header", "CREATE CUSTOMER");
     const httpHeaders = new HttpHeaders(this.reqHeaders);
-    console.log(httpHeaders)
+
     return this.http.post<Customer>(this.customerUrl, customer, {
+      headers: httpHeaders,
+      observe: 'response'
+    });
+  }
+
+  updateCustomer(update: Customer): Observable<HttpResponse<Customer>> {
+    this.reqHeaders.set("X-Custom-Header", "UPDATE CUSTOMER");
+    const httpHeaders = new HttpHeaders(this.reqHeaders);
+
+    return this.http.put<Customer>(this.customerUrl, update, {
       headers: httpHeaders,
       observe: 'response'
     })
   }
 
-  // updateCustomer(update: Customer): Observable<HttpResponse<Customer>> {
-  //   return this.http.put<Customer>(this.customerUrl, update, {
-  //     headers: this.reqHeaders,
-  //     observe: 'response'
-  //   })
-  // }
+  deleteCustomer(custId: string): Observable<HttpResponse<Customer>> {
+    this.reqHeaders.set("X-Custom-Header", "DELETE CUSTOMER");
+    const httpHeaders = new HttpHeaders(this.reqHeaders);
 
-  // deleteCustomer(custId: string): Observable<HttpResponse<Customer>> {
-  //   return this.http.delete<Customer>(this.customerUrl + `/${custId}`, {
-  //     headers: this.reqHeaders,
-  //     observe: 'response'
-  //   })
-  // }
+    return this.http.delete<Customer>(this.customerUrl + `/${custId}`, {
+      headers: httpHeaders,
+      observe: 'response'
+    })
+  }
 }

@@ -13,6 +13,7 @@ export class CustomerFormComponent implements OnInit {
   customerForm = this.fb.group({
     firstName: [''],
     lastName: [''],
+    email: [''],
   });
   editmode = new BehaviorSubject<boolean>(false);
   @Output() customer$ = new EventEmitter<FormGroup>();
