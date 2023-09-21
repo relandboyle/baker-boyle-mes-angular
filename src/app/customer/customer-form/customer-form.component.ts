@@ -11,35 +11,12 @@ import { Customer } from 'src/constants/customer-model';
 })
 export class CustomerFormComponent implements OnInit {
   customerForm = this.fb.group({
-    custId: [''],
-    firstName: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(25)
-      ]
-    ],
-    lastName: [
-      '',
-      [
-        Validators.required,
-        Validators.min(3),
-        Validators.maxLength(25)
-      ]
-    ],
-    phonePrimary: ['', Validators.required],
-    phoneSecondary: ['', Validators.required],
-    email: [
-      '',
-      [
-        Validators.required,
-        Validators.email
-      ]
-    ]
+    firstName: [''],
+    lastName: [''],
+    email: [''],
   });
   editmode = new BehaviorSubject<boolean>(false);
-  @Output() customer$ = new EventEmitter<string>();
+  @Output() customer$ = new EventEmitter<FormGroup>();
 
   constructor(
     private fb: FormBuilder,
@@ -55,10 +32,9 @@ export class CustomerFormComponent implements OnInit {
     this.editmode.next(!currentMode);
   }
 
-  submitForm(): void {
-    console.log(typeof this.customerForm.value.custId)
-    const id = this.customerForm.value.custId as string;
-    this.customer$.emit(id);
+  createCustomer(): void {
+    this.customer$.emit(this.customerForm);
   }
 
 }
+

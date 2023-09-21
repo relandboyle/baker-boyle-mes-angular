@@ -4,6 +4,8 @@
   customer | json
 }}
 
-<button>GET CUSTOMER</button>
+<button type="button" (click)="getCustomer()">GET CUSTOMER</button>
+<button type="button" (click)="deleteCustomer()">DELETE CUSTOMER</button>
+<input type="text" [(ngModel)]="customerId">
 
-<app-customer-form (customer$)="getCustomer($event)"></app-customer-form>
+<app-customer-form (customer$)="createCustomer($event)"></app-customer-form>

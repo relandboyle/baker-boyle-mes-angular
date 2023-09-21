@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.blue-div {
+  background-color: blue;
+  height: 100px;
+  width: 200px;
+  border: solid 1px gray;
+}

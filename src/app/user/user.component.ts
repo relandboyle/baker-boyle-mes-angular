@@ -16,27 +16,4 @@ export class UserComponent {
     private userService: UserService
   ) { }
 
-  getUser(userId: string): void {
-    this.userService.getUser(userId).subscribe({
-      next: user => this.selectedUser = user,
-      error: err => console.error(err),
-      complete: () => console.log(`Found User ${userId}!`)
-    });
-  }
-
-  createUser(): void {
-    const user: User = {
-      userId: '5',
-      firstName: 'Dave',
-      lastName: 'Staehle',
-    }
-
-    this.userService.createUser(user).subscribe({
-      next: user => this.selectedUser = user,
-      error: err => console.error(err),
-      complete: () => {
-        console.log(`Created User ${user.userId}!`)
-      }
-    });
-  }
 }
