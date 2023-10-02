@@ -38,6 +38,11 @@ export class CustomerComponent implements OnInit {
     this.customerService.createCustomer(customer).subscribe(console.log);
   }
 
+  updateCustomer(values: FormGroup): void {
+    const customer: Customer = {...values.value};
+    this.customerService.updateCustomer(customer).subscribe(console.log);
+  }
+
   deleteCustomer(): void {
     console.log("ID: ", this.customerId);
     this.customerService.deleteCustomer(this.customerId).subscribe({

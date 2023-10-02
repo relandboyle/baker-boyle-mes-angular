@@ -1,31 +1,27 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { BehaviorSubject, tap } from 'rxjs';
-
-import { Customer } from 'src/constants/customer-model';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-customer-form',
   templateUrl: './customer-form.component.html',
   styleUrls: ['./customer-form.component.scss']
 })
-export class CustomerFormComponent implements OnInit {
+export class CustomerFormComponent {
   customerForm = this.fb.group({
+    customerId: [''],
     firstName: [''],
     lastName: [''],
     email: [''],
   });
   editmode = new BehaviorSubject<boolean>(false);
-  @Output() customer$ = new EventEmitter<FormGroup>();
+  validId: string = '';
+  @Output() newCustomer$ = new EventEmitter<FormGroup>();
+  @Output() customerUpdate$ = new EventEmitter<FormGroup>();
 
   constructor(
     private fb: FormBuilder,
   ) { }
-
-
-  ngOnInit(): void {
-
-  }
 
   toggleEditmode(): void {
     const currentMode = this.editmode.getValue();
@@ -33,7 +29,11 @@ export class CustomerFormComponent implements OnInit {
   }
 
   createCustomer(): void {
-    this.customer$.emit(this.customerForm);
+    this.newCustomer$.emit(this.customerForm);
+  }
+
+  updateCustomer(): void {
+    this.customerUpdate$.emit(this.customerForm);
   }
 
 }
