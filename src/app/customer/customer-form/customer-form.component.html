@@ -1,13 +1,8 @@
-<p>customer-form works!</p>
-
-<p>
-  {{ customerForm.value | json }}
-</p>
-
-<!-- <button type="button" (click)="findCustomer('123456')">FIND CUSTOMER</button> -->
-
-
 <form class="customerForm" [formGroup]="customerForm">
+
+  <label for="customer-id">Customer ID
+    <input id="customer-id" type="text" formControlName="customerId" [(ngModel)]="validId">
+  </label>
 
   <label for="firstName">First Name
     <input id="firstName" type="text" formControlName="firstName">
@@ -23,5 +18,5 @@
 
 </form>
 
-<button (click)="createCustomer()">CREATE CUSTOMER</button>
-
+<button (click)="createCustomer()" [disabled]="validId.length">CREATE CUSTOMER</button>
+<button (click)="updateCustomer()" [disabled]="!validId.length">UPDATE CUSTOMER</button>

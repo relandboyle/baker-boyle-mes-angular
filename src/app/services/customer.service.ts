@@ -30,21 +30,22 @@ export class CustomerService {
     });
   }
 
-  createCustomer(customer: Customer): Observable<HttpResponse<Customer>> {
+  createCustomer(newCustomer: Customer): Observable<HttpResponse<Customer>> {
     this.reqHeaders.set("X-Custom-Header", "CREATE CUSTOMER");
     const httpHeaders = new HttpHeaders(this.reqHeaders);
 
-    return this.http.post<Customer>(this.customerUrl, customer, {
+    return this.http.post<Customer>(this.customerUrl, newCustomer, {
       headers: httpHeaders,
       observe: 'response'
     });
   }
 
-  updateCustomer(update: Customer): Observable<HttpResponse<Customer>> {
+  updateCustomer(customerUpdate: Customer): Observable<HttpResponse<Customer>> {
     this.reqHeaders.set("X-Custom-Header", "UPDATE CUSTOMER");
     const httpHeaders = new HttpHeaders(this.reqHeaders);
+    const custId = customerUpdate.customerId;
 
-    return this.http.put<Customer>(this.customerUrl, update, {
+    return this.http.put<Customer>(`${this.customerUrl}${custId}`, customerUpdate, {
       headers: httpHeaders,
       observe: 'response'
     })

@@ -1,3 +1,10 @@
+:host {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .customerForm {
   display: flex;
   flex-direction: column;
