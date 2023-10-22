@@ -1,8 +1,7 @@
 :host {
-  width: 500px;
+  width: 400px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
 }
 
 .customerForm {
@@ -12,4 +11,9 @@
 
 .ng-invalid {
   border: 1px solid red;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
 }

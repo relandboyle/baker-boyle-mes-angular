@@ -1,10 +1,16 @@
 <div class="customer-select">
-  <button type="button" (click)="getCustomer()">GET CUSTOMER</button>
-  <button type="button" (click)="deleteCustomer()">DELETE CUSTOMER</button>
-  <label for="customer-id">
-    Customer ID
-    <input type="text" id="customer-id" [(ngModel)]="customerId">
-  </label>
+
+  <mat-form-field>
+    <label for="customer-id">
+      Customer ID
+      <input matInput type="text" id="customer-id" [(ngModel)]="customerId">
+    </label>
+  </mat-form-field>
+
+  <div class="buttons">
+    <button mat-raised-button color="primary" type="button" (click)="getCustomer()">GET CUSTOMER</button>
+    <button mat-raised-button color="primary" type="button" (click)="deleteCustomer()">DELETE CUSTOMER</button>
+  </div>
 </div>
 
 <div *ngIf="customer" class="customer-display">

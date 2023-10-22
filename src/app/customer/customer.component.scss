@@ -1,6 +1,10 @@
 :host {
   display: flex;
   flex-wrap: wrap;
+}
+
+.buttons {
+  display: flex;
   gap: 15px;
 }
 

@@ -1,5 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
-* {
+
+@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+
+html, body { height: 100%; }
+body {
+  margin: 25px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: rgb(40, 45, 56);
   color: rgb(133, 153, 154);
+}
+
+button {
+  width: 200px;
 }
