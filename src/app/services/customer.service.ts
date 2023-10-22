@@ -45,7 +45,7 @@ export class CustomerService {
     const httpHeaders = new HttpHeaders(this.reqHeaders);
     const custId = customerUpdate.customerId;
 
-    return this.http.put<Customer>(`${this.customerUrl}${custId}`, customerUpdate, {
+    return this.http.put<Customer>(`${this.customerUrl}/${custId}`, customerUpdate, {
       headers: httpHeaders,
       observe: 'response'
     })
