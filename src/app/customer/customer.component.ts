@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CustomerService } from '../services/customer.service';
 import { FormGroup } from '@angular/forms';
 
 import { Customer } from 'src/constants/customer-model';
-import { GenerateNewEntityId } from 'src/constants/generateEntityId';
 
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.scss']
 })
-export class CustomerComponent implements OnInit {
+export class CustomerComponent {
   customer!: any;
   customerId = '';
   divArray = [ 1, 2, 3, 4, 5];
@@ -18,10 +17,6 @@ export class CustomerComponent implements OnInit {
   constructor(
     private customerService: CustomerService
   ) { }
-
-  ngOnInit(): void {
-    console.log(GenerateNewEntityId([], 'CUST-'));
-  }
 
   getCustomer(): void {
     console.log("ID: ", this.customerId);
